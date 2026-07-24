@@ -1,6 +1,6 @@
 # Aurivest, end to end: what we built, how it works, why it wins
 
-Written 2026-07-23 for the founder to study and defend (YC + diligence). Every
+Written 2026-07-23 as the brief I study and defend (YC + diligence). Every
 number here is reproducible from the repo; where evidence is external or a value
 is illustrative, it says so.
 
@@ -100,7 +100,7 @@ averaging master. **The NN leads.**
    **8% → 1%**. Boosted trees structurally cannot do this (Browell-Fasiolo 2021).
 3. **Isolated-failure floor**: only if the NN diverges grossly from the stable
    models *with no crisis signal* do we pull it back — a lone failure is caught, a
-   *consensus* extreme (real crisis) is trusted. This is your "don't let an expert
+   *consensus* extreme (real crisis) is trusted. This is my "don't let an expert
    fail, but don't hold it back in a crisis," written as math (a robust aggregator's
    breakdown point = the tolerated blow-up fraction; Huber 1964).
 
@@ -178,7 +178,7 @@ NN runs on is the *measured* signal subset, while the tree can safely hold more.
 
 ## 6. The revenue stack (how the asset pays)
 
-Priority order (the founder's: "first the CP should be peak"):
+Priority order (mine: "first the CP should be peak"):
 
 1. **GA / 5CP avoidance — the primary.** Capture the five peak hours, shave the
    client's peak-demand factor, cut ~70%+ of their GA. ~$350–400k/MW-yr of avoided
@@ -186,7 +186,7 @@ Priority order (the founder's: "first the CP should be peak"):
 2. **Capacity auction** — storage is explicitly eligible; the December 2025 auction
    cleared near record highs. An availability *obligation* that competes with
    discretionary 5CP dispatch — the optimizer trades these off (Layer 4).
-3. **Demand response** — the client/IESO calls DR events; we log when DR was asked
+3. **Demand response** — the client/IESO calls DR events; we log when DR was called
    and dispatch into them. Overlaps with, and must be de-conflicted against, the
    5CP shave.
 4. **Energy arbitrage** — charge cheap, discharge dear on the OEMP curve, on the

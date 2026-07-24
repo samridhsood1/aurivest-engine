@@ -1,6 +1,6 @@
 """Neural-network quantile forecaster - a drop-in COMPARISON to the LightGBM
-net-load stack (forecast/netload.py), for the head-to-head the founder asked
-for on the *identical* walk-forward gate.
+net-load stack (forecast/netload.py), for a head-to-head on the *identical*
+walk-forward gate.
 
 Why this exists (docs/model-architecture-survey.md, Families 2 and 7). The
 survey's honest expectation is that on the SCARCE head (~120 coincident-peak

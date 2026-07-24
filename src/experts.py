@@ -1,6 +1,6 @@
 """The room of experts and the bounded gating master (the 'expert of experts').
 
-Founder direction (2026-07-23): don't pick gbt-vs-nn; build a committee whose
+Design decision (2026-07-23): don't pick gbt-vs-nn; build a committee whose
 members cover each other's failure modes, then a master NN that learns, from the
 raw context, HOW MUCH to trust each expert where. Survivability is structural:
 the master emits convex (softmax, sum-to-1) weights, so the final quantiles are a

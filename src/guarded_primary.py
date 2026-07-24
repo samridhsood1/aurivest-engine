@@ -1,7 +1,7 @@
 """NnPrimary - the deployment predictor.
 
-Decision (founder + evidence, 2026-07-23): the NN is the best single model on our
-tests (captured 4.2/5 peaks vs the averaging master's 3.4); averaging PROVABLY
+Decision (2026-07-23, on the head-to-head evidence): the NN is the best single
+model tested (captured 4.2/5 peaks vs the averaging master's 3.4); averaging PROVABLY
 holds it back (Vincentization shrinks the upper tail - Lichtendahl 2013). So the
 NN LEADS and the averaging master is removed. It is made un-failable AND
 not-held-back by thin, ASYMMETRIC safety instead of an average:

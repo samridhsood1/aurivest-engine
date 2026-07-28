@@ -2,7 +2,8 @@
 
 Ontario bills its largest industrial consumers on **five hours a year**: the five
 provincial "coincident peak" hours set each factory's Global Adjustment charge —
-routinely the largest line on the bill, ~$375k/yr per MW of peak contribution.
+routinely the largest line on the bill, $347,191/yr per MW of peak contribution
+(2024 Class A rate).
 Miss those hours and you overpay seven figures. Hit them and the bill collapses.
 
 Aurivest puts a battery behind the factory's meter, **predicts those five hours,
@@ -18,7 +19,7 @@ pipeline, feature layer, and evaluation harness — is private; demo on request.
 | Peak **days** alerted (18 alert days/season) | **85/85 — 100%** |
 | Peak **hours** captured inside the 6-h discharge window | **83/85 — 98%** |
 | Held-out test seasons (2022–2026), strict hour-in-window | **24/25** |
-| Modeled net value per 10 MW / 60 MWh site | **~$5.5M/yr** |
+| Modeled gross value per 10 MW / 60 MWh site | **~$5.2M/yr** |
 | Forecast-quality edge vs a naive forecast (GA alone) | **~$1M/yr/site** |
 
 Every number is **selection-clean**: hyperparameters and design choices were
@@ -26,9 +27,12 @@ tuned only on pre-2022 seasons; 2022–2026 was evaluated once. Backtest and liv
 operation share one code path over a bitemporal store, so "as of 6 AM that
 morning" is enforced by construction — the backtest physically cannot peek.
 
-**Live**: the system produces a real dispatch plan every morning from the live
-data feed (`src/predict_today.py`), and daily shadow forecasts have run on CI
-against real market data since July 2026, scored publicly in-repo.
+**Live**: the system runs as one pipeline on CI — hourly capture into the
+append-only store, a weekly retrain, and a morning entrypoint
+(`src/predict_today.py`) that produces the day's dispatch plan on the *same code
+path* as the backtest. It emitted a real plan off the live store on 2026-07-24.
+The public scored record began in July 2026 and is still young; it is a seed,
+not evidence, and the scoreboard says so in its own header.
 
 ## Why this is hard (and interesting)
 
@@ -53,7 +57,7 @@ against real market data since July 2026, scored publicly in-repo.
 
 ```mermaid
 flowchart LR
-    A[Bitemporal store<br/>139 series, 2002→live<br/>event_time × knowledge_time] --> B[As-of feature matrix<br/>forecast vintages only<br/>no hindsight leakage]
+    A[Bitemporal store<br/>175 series, 2002→live<br/>event_time × knowledge_time] --> B[As-of feature matrix<br/>forecast vintages only<br/>no hindsight leakage]
     B --> C[NN primary<br/>quantile MLP, 5 heads<br/>feature-selected, seed ensemble]
     B --> D[Failsafe room<br/>GBDT · spline · quantile forest]
     C --> E[Guards<br/>OOD clamps · EVT crisis tail<br/>isolated-divergence fallback]
@@ -92,7 +96,7 @@ flowchart LR
 - **Fail loud**: validation rejects whole batches; a starved feature feed aborts
   the morning forecast rather than emitting a confidently wrong one.
 - **Single-writer data**: the store is written only by CI; every clone is
-  read-only. ~350 synthetic-fixture tests, no network needed.
+  read-only. 506 synthetic-fixture tests, no network needed.
 
 ## What's in this repo
 
@@ -113,6 +117,28 @@ wrong hour — a real information ceiling at day-ahead, and the named next lever
 (upper-air heat-dome features; LP-based intraday re-decision) are in the
 roadmap, not in the results. Where a claim depends on a tariff rate, the rate
 is verified against the primary source before it is quoted externally.
+
+---
+
+## What is deliberately not here
+
+This repo is curated excerpts, published to be read rather than run: some modules
+reference components that aren't included, and the **tuned operating points are
+redacted** — the deployment recipe, the crisis-gate quantile, the guard's
+divergence threshold. Those are the outputs of measured calibration studies, and
+they are the only parts here that cost compute rather than thought.
+
+They would also be worth little on their own. Every one was tuned against a
+point-in-time store of Ontario net load that does not ship with this repo, and
+the model is retrained against a live flow. That is the actual argument: a copied
+artifact goes stale the day it is severed from the data feeding it. The
+architecture is shown in full precisely because the architecture is not the moat.
+
+Not included at all: the ingestion layer and source configs, the feature
+assembly, the leakage harness, the walk-forward evaluation harness, the
+hyperparameter search, and the data store itself.
+
+Licence: source-available for evaluation, not open source. See `LICENSE`.
 
 ---
 

@@ -32,9 +32,17 @@ import polars as pl
 
 from .nn_model import QuantileNN, TAUS, ENSEMBLE_SEEDS, feature_columns
 
-# tuned NN (search finalist c004) + guards ON, the deployment config.
-NN_DEPLOY = dict(hidden_dims=(256, 128), lr=0.002, dropout=0.1, weight_decay=1e-4,
-                 input_clip=6.0, output_envelope=0.75, max_epochs=250, patience=15)
+# The tuned deployment recipe - layer widths, learning rate, regularisation, and
+# the two guard clamps - is REDACTED in this public showcase. It is the output of
+# a measured calibration study (validation curves + early stopping per fold, not
+# defaults), and it is the one thing in this file that cost compute rather than
+# thought. The architecture below is complete and unredacted; only the settings
+# are withheld. They are also worth very little on their own: they were tuned
+# against a point-in-time store of Ontario net load that does not ship with this
+# repo, which is rather the point - the moat is the data flow, not the file.
+NN_DEPLOY = dict(hidden_dims=REDACTED, lr=REDACTED, dropout=REDACTED,
+                 weight_decay=REDACTED, input_clip=REDACTED,
+                 output_envelope=REDACTED, max_epochs=REDACTED, patience=REDACTED)
 
 
 @dataclass
@@ -44,7 +52,7 @@ class NnPrimary:
     device: str | None = "cpu"          # gate/deploy pins cpu for determinism
     n_jobs: int | None = 1
     crisis_col: str = "temp_fcst"       # the leading heat signal
-    crisis_pct: float = 0.90            # upper decile of the signal = "crisis regime"
+    crisis_pct: float = REDACTED        # calibrated upper quantile = "crisis regime"
     nn: QuantileNN = field(default=None, repr=False)
 
     def fit(self, m: pl.DataFrame) -> "NnPrimary":

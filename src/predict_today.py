@@ -10,7 +10,8 @@ the NEW primary stack end to end, read-only:
   2. guarded-NN quantiles: NN primary (nn_primary_v3.pkl) with OOD guards +
      crisis-EVT upper tail; failsafe check vs tree/spline/qforest medians
      (failsafes_v3.pkl) - fallback to their pool ONLY on isolated divergence
-     with no crisis signal (z=8, the calibrated operating point);
+     with no crisis signal (the calibrated divergence threshold is redacted
+     in this public showcase; the mechanism is fully shown below);
   3. peak-hour pmf (tuned classifier refit weekly with the failsafe bundle -
      here the bundled tree stack's argmax-hour proxy until the clf artifact is
      added to the bundle);
@@ -105,7 +106,7 @@ def main() -> int:
         band90_at_peak=[float(q["q05"][int(np.argmax(op))]), float(q["q95"][int(np.argmax(op))])],
         crisis_regime=bool(crisis[int(np.argmax(op))]),
         guard_fired=guard_fired,
-        model="guarded-nn v3 (c004+top40+solar, EVT tail, failsafe z=8)",
+        model="guarded-nn v3 (EVT crisis tail + isolated-divergence failsafe)",
     )
     print(json.dumps(plan, indent=2))
     if args.out:

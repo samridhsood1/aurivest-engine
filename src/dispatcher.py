@@ -26,7 +26,7 @@ import polars as pl, numpy as np
 P_MW, DUR_MAX = 10.0, 6
 ETA_RT = 0.92; ETA_1 = ETA_RT ** 0.5
 DEGRAD = 150_000.0 / 8000                    # $/MWh throughput (~$18.75)
-GA_RATE, CAP_RATE = 375_000.0, 170_000.0
+GA_RATE, CAP_RATE = 347_191.0, 170_000.0
 VAL_PER_PEAK = P_MW * GA_RATE / 5.0
 ARM_DAYS = 18
 

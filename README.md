@@ -12,12 +12,26 @@ and arbitrage revenue on the same asset. This repo is the public engineering
 showcase of the forecasting + dispatch engine. (The full system — the live data
 pipeline, feature layer, and evaluation harness — is private; demo on request.)
 
-## Results (walk-forward backtest, 17 seasons, 2010–2026)
+## Results (walk-forward backtest, 16 complete seasons 2010–2025 + the live 2026 season)
+
+| metric | result |
+|---|---|
+| CP hours **delivered ≥50% of nameplate**, through battery physics + settlement | **75/80 — 94%** (REAL-vintage leg 33/35, mean 9.4 MW of 10) |
+| CP hours contained by the armed 8-h window | **79/80 — 99%** |
+| **Live 2026 season to date** (base period incomplete) | **5/5 contained** |
+| Modeled net value per 10 MW / 60 MWh site (backtest basis) | **~$3.4M/yr** |
+| Forward, at capacity prices already cleared for 2026/27 | **~$5.0M/yr (~$500k/MW-yr)** |
+
+*Corrected upward and downward in public as the engineering record moved
+(recharge-physics fixes, an adopted intraday re-plan, a leak-clean rebuild);
+the private repo carries every dated correction and the pre-registered gate
+behind each number. Delivered-through-physics is the number a client buys —
+window containment is the forecasting claim and always stated separately.*
 
 | metric | result |
 |---|---|
 | Peak **days** alerted (18 alert days/season) | **85/85 — 100%** |
-| Peak **hours** captured inside the 6-h discharge window | **83/85 — 98%** |
+| Peak **hours** captured inside the 8-h discharge window | **83/85 — 98%** |
 | Held-out test seasons (2022–2026), strict hour-in-window | **24/25** |
 | Modeled gross value per 10 MW / 60 MWh site | **~$5.2M/yr** |
 | Forecast-quality edge vs a naive forecast (GA alone) | **~$1M/yr/site** |
@@ -63,7 +77,7 @@ flowchart LR
     C --> E[Guards<br/>OOD clamps · EVT crisis tail<br/>isolated-divergence fallback]
     D --> E
     B --> F[Peak-hour classifier<br/>timing pmf]
-    E --> G[Dispatcher<br/>arm top-18 days · blended 6-h window<br/>LFP economics: 92% RTE, $/cycle]
+    E --> G[Dispatcher<br/>arm top-18 days · blended 8-h window<br/>LFP economics: 92% RTE, $/cycle]
     F --> G
     G --> H[Plan: 5CP · capacity · DR · arbitrage]
 ```

@@ -3,16 +3,20 @@
 Every morning the forecasting system files its call for the day: the hour it
 expects Ontario's provincial demand to peak. Each row below is that call,
 as issued, with its issue timestamp. Nothing here is ever edited after the
-fact — from 2026-08-19 onward this repo's own commit history is the
-public proof; entries before that were mirrored from the private bitemporal
-store on first publish and carry the store's issue stamps (the underlying
-commits are auditable in diligence).
+fact. Rows are mirrored from the private bitemporal store and carry the
+store's issue stamps; each daily JSON in record/daily/ names the private
+data-repo commit that filed the call, and those commits are auditable in
+diligence. Curation note: on 2026-09-03 this repository's history was
+rewritten to remove code excerpts that previously accompanied the record.
+Every record entry and every issue stamp was preserved unchanged; the
+private store remains the primary proof of when each call was filed.
 
 Hours are Eastern local hour-ending. Realized peaks are independently
 checkable against IESO's published demand data — that is the point.
 The system's tested history (7 seasons walk-forward on real forecast
-vintages, 94% of coincident-peak hours) is documented in this repo's
-docs/; the table below is the LIVE record that discipline produces.
+vintages, 94% of coincident-peak hours) is held in the private
+repositories and shown in diligence; the table below is the LIVE record
+that discipline produces.
 
 | date | issued (UTC) | predicted peak hour (ET, HE) | q50 (MW) | top-3 hours (p) |
 |---|---|---|---|---|

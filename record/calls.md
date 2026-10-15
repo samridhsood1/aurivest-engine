@@ -3,8 +3,8 @@
 Every morning the forecasting system files its call for the day: the hour it
 expects Ontario's provincial demand to peak. Each row below is that call,
 as issued, with its issue timestamp. Nothing here is ever edited after the
-fact. Rows are mirrored from the private bitemporal store and carry the
-store's issue stamps; each daily JSON in record/daily/ names the private
+fact. Rows are mirrored from the private record and carry its issue
+stamps; each daily JSON in record/daily/ names the private
 data-repo commit that filed the call, and those commits are auditable in
 diligence. Curation note: on 2026-09-03 this repository's history was
 rewritten to remove code excerpts that previously accompanied the record.

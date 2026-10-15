@@ -12,11 +12,10 @@ Every record entry and every issue stamp was preserved unchanged; the
 private store remains the primary proof of when each call was filed.
 
 Hours are Eastern local hour-ending. Realized peaks are independently
-checkable against IESO's published demand data — that is the point.
-The system's tested history (7 seasons walk-forward on real forecast
-vintages, 94% of coincident-peak hours) is held in the private
-repositories and shown in diligence; the table below is the LIVE record
-that discipline produces.
+checkable against IESO's published demand data.
+The backtest figure this page used to cite (94% of coincident-peak hours) is
+withdrawn: see the README. The calls below are published as issued, as a
+running log, not as evidence of skill.
 
 | date | issued (UTC) | predicted peak hour (ET, HE) | q50 (MW) | top-3 hours (p) |
 |---|---|---|---|---|

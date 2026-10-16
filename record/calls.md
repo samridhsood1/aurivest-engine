@@ -11,13 +11,19 @@ rewritten to remove code excerpts that previously accompanied the record.
 Every record entry and every issue stamp was preserved unchanged; the
 private store remains the primary proof of when each call was filed.
 
-Hours are Eastern local hour-ending. Realized peaks are independently
-checkable against IESO's published demand data.
+Hours are Eastern local hour-beginning (America/Toronto clock): hour 17 is
+17:00 to 18:00 local time, which while daylight time is in force is IESO's
+hour-ending 17 (EST) and in winter is IESO's hour-ending 18. Realized peaks
+are independently checkable against IESO's published demand data.
+Correction, 2026-10-16: rows issued through 2026-10-16 carry the label HE,
+which wrongly said hour-ending. Their hours were always local hour-beginning
+as above (HE17 in those rows means 17:00 to 18:00 local). Those rows are left
+exactly as issued; rows from 2026-10-17 use HB.
 The backtest figure this page used to cite (94% of coincident-peak hours) is
 withdrawn: see the README. The calls below are published as issued, as a
 running log, not as evidence of skill.
 
-| date | issued (UTC) | predicted peak hour (ET, HE) | q50 (MW) | top-3 hours (p) |
+| date | issued (UTC) | predicted peak hour (ET, hour-beginning) | q50 (MW) | top-3 hours (p) |
 |---|---|---|---|---|
 | 2026-08-06 | 2026-08-06 13:06 | HE17 | 20,994 | HE17 (0.66), HE18 (0.31), HE19 (0.01) |
 | 2026-08-07 | 2026-08-07 12:21 | HE17 | 20,202 | HE17 (0.64), HE18 (0.28), HE16 (0.03) |

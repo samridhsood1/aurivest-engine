@@ -1,0 +1,36 @@
+{
+  "target_date": "2026-11-02",
+  "issued_utc": "2026-11-02T12:23:27.664065+00:00",
+  "knowledge_policy": "observed_issue",
+  "predicted_peak_local_hour": 17,
+  "q50_mw": 17634.9,
+  "band90_mw": [
+    15836.8,
+    19026.3
+  ],
+  "pmf_top3": [
+    {
+      "local_hour": 17,
+      "p": 0.8158
+    },
+    {
+      "local_hour": 18,
+      "p": 0.0994
+    },
+    {
+      "local_hour": 16,
+      "p": 0.0362
+    }
+  ],
+  "artifact": {
+    "id": "netload_v1_1/2026-10-31",
+    "config_hash": "b3159965eefd",
+    "code_commit": "41b7dfe6f56b56c05e5e2beee466a2cda9f62435",
+    "trained_at": "2026-11-01T08:10:15.655517+00:00"
+  },
+  "proof": {
+    "data_commit": "1f8737eaf885e531c849da4a57eddb4cfd98e26d",
+    "data_commit_time": "2026-11-02T12:23:54+00:00",
+    "note": "commit hash + time of the private data repo push that filed this call; auditable in diligence"
+  }
+}

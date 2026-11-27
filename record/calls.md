@@ -137,3 +137,4 @@ running log, not as evidence of skill.
 | 2026-11-23 | 2026-11-23 12:23 | HB17 | 18,517 | HB17 (0.97), HB18 (0.01), HB16 (0.01) |
 | 2026-11-24 | 2026-11-24 12:23 | HB17 | 18,522 | HB17 (0.96), HB18 (0.01), HB16 (0.01) |
 | 2026-11-25 | 2026-11-25 12:23 | HB17 | 18,567 | HB17 (0.94), HB18 (0.03), HB16 (0.01) |
+| 2026-11-26 | none | *no morning call filed* | none | gap recorded as a gap, never backfilled |
